@@ -16,6 +16,8 @@ public class HeroCharacterScript : MonoBehaviour
     public Animator animator;
 
     private int animationState = 0;
+    
+    private static readonly int Dir = Animator.StringToHash("dir");
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class HeroCharacterScript : MonoBehaviour
         
         rigidBody.MovePosition(rigidBody.position + direction * (moveSpeed * Time.fixedDeltaTime));
         
-        animator.SetInteger("dir", animationState);
+        animator.SetInteger(Dir, animationState);
     }
 
     private void HandleMovement()
