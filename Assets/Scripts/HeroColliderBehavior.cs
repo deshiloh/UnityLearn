@@ -33,6 +33,14 @@ public class HeroColliderBehavior : MonoBehaviour
         otherObject = null;
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.CompareTag("QuestGiver"))
+        {
+            
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A) && otherObject != null)
