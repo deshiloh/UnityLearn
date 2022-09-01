@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace QuestSystem
 {
     [System.Serializable]
@@ -7,6 +9,10 @@ namespace QuestSystem
         public string description;
         public int xp = 0;
         public int gold = 0;
-        public bool isActive = true;
+        public bool isActive = false;
+        public GameObject giver;
+        public GameObject questObject;
+        public int quantityNeeded;
+        public int actualQuantity = 0;
     }
 }

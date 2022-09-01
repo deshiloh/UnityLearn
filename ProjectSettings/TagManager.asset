@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sign
   - QuestGiver
+  - QuestObject
   layers:
   - Default
   - TransparentFX
