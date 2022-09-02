@@ -15,15 +15,9 @@ public class HeroCharacterScript : MonoBehaviour
 
     public Animator animator;
 
-    private int animationState = 0;
+    private int _animationState = 0;
     
     private static readonly int Dir = Animator.StringToHash("dir");
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,7 +26,7 @@ public class HeroCharacterScript : MonoBehaviour
         
         rigidBody.MovePosition(rigidBody.position + direction * (moveSpeed * Time.fixedDeltaTime));
         
-        animator.SetInteger(Dir, animationState);
+        animator.SetInteger(Dir, _animationState);
     }
 
     private void HandleMovement()
@@ -40,29 +34,29 @@ public class HeroCharacterScript : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             direction = Vector2.up;
-            animationState = 1;
+            _animationState = 1;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             direction = Vector2.down;
-            animationState = 3;
+            _animationState = 3;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction = Vector2.left;
-            animationState = 2;
+            _animationState = 2;
             spritRenderer.flipX = false;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             direction = Vector2.right;
-            animationState = 2;
+            _animationState = 2;
             spritRenderer.flipX = true;
         }
         else
         {
             direction = Vector2.zero;
-            animationState = 0;
+            _animationState = 0;
         }
     }
 }
