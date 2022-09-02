@@ -3995,6 +3995,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2526098625286661342, guid: e63bb5e8eeac34ecfa03adaba5b8bd2a, type: 3}
+      propertyPath: m_Name
+      value: MessagePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 2526098625721018624, guid: e63bb5e8eeac34ecfa03adaba5b8bd2a, type: 3}
       propertyPath: m_Name
       value: UIGroup
