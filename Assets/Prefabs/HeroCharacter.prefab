@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4743475962853629209}
   - component: {fileID: 4743475962853629211}
   - component: {fileID: 4743475962853629210}
+  - component: {fileID: 9033866834777534308}
   m_Layer: 0
   m_Name: HeroCharacter
   m_TagString: Untagged
@@ -201,3 +202,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests: []
+--- !u!114 &9033866834777534308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743475962853629202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0a256617b744a3493fbb98902f24ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messagePanel: {fileID: 0}
