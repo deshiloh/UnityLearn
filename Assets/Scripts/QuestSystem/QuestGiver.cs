@@ -14,6 +14,7 @@ namespace QuestSystem
         private TMP_Text _questDescription;
         private TMP_Text _questXp;
         private TMP_Text _questGold;
+        public GameObject questIcon; 
 
         private void Start()
         {
@@ -22,6 +23,7 @@ namespace QuestSystem
             _questXp = questPanel.transform.GetChild(3).gameObject.GetComponent<TMP_Text>();
             _questGold = questPanel.transform.GetChild(4).gameObject.GetComponent<TMP_Text>();
             quest.giver = gameObject;
+            questIcon = gameObject.transform.Find("MageCanvas").gameObject;
         }
 
         public void ShowQuestPanel()

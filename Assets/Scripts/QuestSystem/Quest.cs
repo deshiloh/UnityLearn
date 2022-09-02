@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace QuestSystem
@@ -10,9 +11,21 @@ namespace QuestSystem
         public int xp = 0;
         public int gold = 0;
         public bool isActive = false;
+        public bool isCompleted = false;
+        public bool isTerminated = false;
         public GameObject giver;
-        public GameObject questObject;
+        public string questObjectTag;
         public int quantityNeeded;
         public int actualQuantity = 0;
+
+        public void IncrementActualQuantity()
+        {
+            actualQuantity++;
+            if (actualQuantity >= quantityNeeded)
+            {
+                isCompleted = true;
+                giver.GetComponent<QuestGiver>().questIcon.SetActive(true);
+            }
+        }
     }
 }

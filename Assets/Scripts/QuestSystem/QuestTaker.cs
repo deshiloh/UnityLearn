@@ -30,10 +30,22 @@ namespace QuestSystem
 
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.A) || _questGiver == null) return;
-            if (_questGiver.quest.isActive) return;
+            if (Input.GetKeyDown(KeyCode.A) && _questGiver != null)
+            {
+                if (!_questGiver.quest.isActive)
+                {
+                    _questGiver.ShowQuestPanel();    
+                }
+
+                if (_questGiver.quest.isActive && _questGiver.quest.isCompleted && !_questGiver.quest.isTerminated)
+                {
+                    print("Rewards");
+                    _questGiver.questIcon.SetActive(false);
+                    _questGiver.quest.isTerminated = true;
+                }
+                
+            }
             
-            _questGiver.ShowQuestPanel();
         }
 
         public void TakeQuest()
@@ -41,6 +53,7 @@ namespace QuestSystem
             _questGiver.quest.isActive = true;
             quests.Add(_questGiver.quest);
             _questGiver.HideQuestPanel();
+            _questGiver.questIcon.SetActive(false);
         }
     }
 }
