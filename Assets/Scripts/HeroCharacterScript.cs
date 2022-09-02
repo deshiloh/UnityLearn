@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,14 @@ public class HeroCharacterScript : MonoBehaviour
     private int _animationState = 0;
     
     private static readonly int Dir = Animator.StringToHash("dir");
+
+    private void Awake()
+    {
+        var startPositionName = PlayerPrefs.GetString("StartPositionName", "StartPosition");
+        
+        //var teleportPosition = GameObject.Find("StartZones/" + startPositionName).transform.position;
+        //transform.position = teleportPosition;
+    }
 
     // Update is called once per frame
     void Update()
