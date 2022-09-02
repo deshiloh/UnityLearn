@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace QuestSystem
@@ -18,7 +17,7 @@ namespace QuestSystem
 
         private void Start()
         {
-            _questTitle = questPanel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+            _questTitle = questPanel.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
             _questDescription = questPanel.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
             _questXp = questPanel.transform.GetChild(3).gameObject.GetComponent<TMP_Text>();
             _questGold = questPanel.transform.GetChild(4).gameObject.GetComponent<TMP_Text>();

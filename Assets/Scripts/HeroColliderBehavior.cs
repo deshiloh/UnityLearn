@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using QuestSystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroColliderBehavior : MonoBehaviour
 {
@@ -27,6 +28,14 @@ public class HeroColliderBehavior : MonoBehaviour
         {
             var signBehavior = _otherObject.gameObject.GetComponent<SignBehavior>();
             signBehavior.signUI.SetActive(true);
+        }
+
+        if (col.CompareTag("SwitchZone"))
+        {
+            var zoneSwitch = col.gameObject.GetComponent<SwitchZone.SwitchZone>();
+            PlayerPrefs.SetString("startPosition", zoneSwitch.startPositionName);
+            PlayerPrefs.SetString("ActualZone", zoneSwitch.nextZoneName);
+            SceneManager.LoadScene(zoneSwitch.nextZoneName);
         }
     }
 
