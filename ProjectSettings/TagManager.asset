@@ -8,6 +8,7 @@ TagManager:
   - QuestGiver
   - QuestPickUp
   - SwitchZone
+  - Mob
   layers:
   - Default
   - TransparentFX

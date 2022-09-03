@@ -23,7 +23,7 @@ public class HeroColliderBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         _otherObject = col;
-        
+
         if (col.CompareTag("Sign"))
         {
             var signBehavior = _otherObject.gameObject.GetComponent<SignBehavior>();
@@ -36,6 +36,11 @@ public class HeroColliderBehavior : MonoBehaviour
             PlayerPrefs.SetString("startPosition", zoneSwitch.startPositionName);
             PlayerPrefs.SetString("ActualZone", zoneSwitch.nextZoneName);
             SceneManager.LoadScene(zoneSwitch.nextZoneName);
+        }
+
+        if (col.CompareTag("Mob"))
+        {
+            print("COMBAT");
         }
     }
 
