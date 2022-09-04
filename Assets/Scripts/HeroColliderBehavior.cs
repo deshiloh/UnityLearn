@@ -1,29 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using QuestSystem;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HeroColliderBehavior : MonoBehaviour
 {
-    public GameObject dialogObject;
-    
-    public TMP_Text dialogText;
-    
     private Collider2D _otherObject;
 
     private QuestTaker _questTaker;
 
+    private MessageSystem _messageSystem;
+
     private void Start()
     {
         _questTaker = GetComponent<QuestTaker>();
+        _messageSystem = gameObject.GetComponent<MessageSystem>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         _otherObject = col;
+
         if (col.CompareTag("Sign"))
         {
             var signBehavior = _otherObject.gameObject.GetComponent<SignBehavior>();
@@ -37,16 +33,31 @@ public class HeroColliderBehavior : MonoBehaviour
             PlayerPrefs.SetString("ActualZone", zoneSwitch.nextZoneName);
             SceneManager.LoadScene(zoneSwitch.nextZoneName);
         }
+
+        if (col.CompareTag("Mob"))
+        {
+            var actualPosition = transform.position;
+
+            PlayerPrefs.SetString("ActualScene", SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetFloat("PositionX", actualPosition.x);
+            PlayerPrefs.SetFloat("PositionY", actualPosition.y);
+
+            ApplicationData.CurrentEnemy = col.gameObject.name;
+
+            SceneManager.LoadScene("FightScene");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Sign")) return;
+        
         var signBehavior = _otherObject.gameObject.GetComponent<SignBehavior>();
         signBehavior.signUI.SetActive(false);
-        if (dialogObject.activeSelf)
+        
+        if (_messageSystem.messagePanel.activeSelf)
         {
-            dialogObject.SetActive(false);
+            _messageSystem.HideMessage();
         }
 
         _otherObject = null;
@@ -59,8 +70,7 @@ public class HeroColliderBehavior : MonoBehaviour
         if (_otherObject.CompareTag("Sign"))
         {
             var signBehavior = _otherObject.gameObject.GetComponent<SignBehavior>();
-            dialogText.SetText(signBehavior.panelText);
-            dialogObject.SetActive(true);    
+            _messageSystem.ShowMessage(signBehavior.panelText);
         }
 
         if (_otherObject.CompareTag("QuestPickUp"))

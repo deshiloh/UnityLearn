@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HeroCharacterScript : MonoBehaviour
 {
     // Variables
@@ -22,10 +23,30 @@ public class HeroCharacterScript : MonoBehaviour
 
     private void Awake()
     {
-        var startPositionName = PlayerPrefs.GetString("StartPositionName", "StartPosition");
+        var teleportPosition = new Vector3();
         
-        //var teleportPosition = GameObject.Find("StartZones/" + startPositionName).transform.position;
-        //transform.position = teleportPosition;
+        if (PlayerPrefs.GetFloat("PositionX") == 0)
+        {
+            teleportPosition = GameObject.Find("StartZones/ZoneSauvageSouth").transform.position;
+        }
+        else
+        {
+            teleportPosition.x = PlayerPrefs.GetFloat("PositionX");
+            teleportPosition.y = PlayerPrefs.GetFloat("PositionY");
+            teleportPosition.z = 0;
+        }
+        
+        transform.position = teleportPosition;
+    }
+
+    private void Start()
+    {
+        if (ApplicationData.HasBeenKilled)
+        {
+            Destroy(GameObject.Find("Enemies/" + ApplicationData.CurrentEnemy));
+            ApplicationData.CurrentEnemy = null;
+            ApplicationData.HasBeenKilled = false;
+        }
     }
 
     // Update is called once per frame
