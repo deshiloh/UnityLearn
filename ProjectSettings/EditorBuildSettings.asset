@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZoneSauvageNorth.unity
     guid: b0be36d791e174093911c5f2ab3596c1
+  - enabled: 1
+    path: Assets/Scenes/FightScene.unity
+    guid: 11a862e127aba48e59833f5df336574e
   m_configObjects: {}

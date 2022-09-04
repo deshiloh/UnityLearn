@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using QuestSystem;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,7 +36,15 @@ public class HeroColliderBehavior : MonoBehaviour
 
         if (col.CompareTag("Mob"))
         {
-            print("COMBAT");
+            var actualPosition = transform.position;
+
+            PlayerPrefs.SetString("ActualScene", SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetFloat("PositionX", actualPosition.x);
+            PlayerPrefs.SetFloat("PositionY", actualPosition.y);
+
+            ApplicationData.CurrentEnemy = col.gameObject.name;
+
+            SceneManager.LoadScene("FightScene");
         }
     }
 
