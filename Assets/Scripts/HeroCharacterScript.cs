@@ -21,31 +21,41 @@ public class HeroCharacterScript : MonoBehaviour
     
     private static readonly int Dir = Animator.StringToHash("dir");
 
+    private HeroStats _heroStats;
+
     private void Awake()
     {
-        var teleportPosition = new Vector3();
-        
-        if (PlayerPrefs.GetFloat("PositionX") == 0)
-        {
-            teleportPosition = GameObject.Find("StartZones/ZoneSauvageSouth").transform.position;
-        }
-        else
-        {
-            teleportPosition.x = PlayerPrefs.GetFloat("PositionX");
-            teleportPosition.y = PlayerPrefs.GetFloat("PositionY");
-            teleportPosition.z = 0;
-        }
-        
-        transform.position = teleportPosition;
-    }
+        _heroStats = GetComponent<HeroStats>();
 
-    private void Start()
-    {
+        var startPointPosition = GameObject.Find("StartZones/StartPosition").transform.position;
+
+        var teleportPositionX = PlayerPrefs.GetFloat("PositionX", startPointPosition.x);
+        var teleportPositionY = PlayerPrefs.GetFloat("PositionY", startPointPosition.y);
+
+        transform.position = new Vector3(teleportPositionX, teleportPositionY, 0);
+        
+        // Handle end fight
         if (ApplicationData.HasBeenKilled)
         {
             Destroy(GameObject.Find("Enemies/" + ApplicationData.CurrentEnemy));
+
+            if (ApplicationData.EnemyGold > 0)
+            {
+                _heroStats.GetGold(ApplicationData.EnemyGold);    
+            }
+
+            if (ApplicationData.EnemyXp > 0) 
+            {
+                _heroStats.GetXp(ApplicationData.EnemyXp);    
+            }
+
+            ApplicationData.EnemyGold = 0;
+            ApplicationData.EnemyXp = 0;
             ApplicationData.CurrentEnemy = null;
             ApplicationData.HasBeenKilled = false;
+            
+            PlayerPrefs.SetFloat("PositionX", 0);
+            PlayerPrefs.SetFloat("PositionY", 0);
         }
     }
 

@@ -29,8 +29,6 @@ public class HeroColliderBehavior : MonoBehaviour
         if (col.CompareTag("SwitchZone"))
         {
             var zoneSwitch = col.gameObject.GetComponent<SwitchZone.SwitchZone>();
-            PlayerPrefs.SetString("startPosition", zoneSwitch.startPositionName);
-            PlayerPrefs.SetString("ActualZone", zoneSwitch.nextZoneName);
             SceneManager.LoadScene(zoneSwitch.nextZoneName);
         }
 
@@ -42,7 +40,12 @@ public class HeroColliderBehavior : MonoBehaviour
             PlayerPrefs.SetFloat("PositionX", actualPosition.x);
             PlayerPrefs.SetFloat("PositionY", actualPosition.y);
 
-            ApplicationData.CurrentEnemy = col.gameObject.name;
+            var enemyObject = col.gameObject;
+            var enemyBhevior = enemyObject.GetComponent<EnemyBehevior>(); 
+
+            ApplicationData.CurrentEnemy = enemyObject.name;
+            ApplicationData.EnemyXp = enemyBhevior.xp;
+            ApplicationData.EnemyGold = enemyBhevior.gold;
 
             SceneManager.LoadScene("FightScene");
         }
