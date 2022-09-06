@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,14 @@ namespace QuestSystem
     public class QuestTaker : MonoBehaviour
     {
         private QuestGiver _questGiver;
-
+        private HeroStats _stats;
         public List<Quest> quests = new List<Quest>();
+
+        private void Start()
+        {
+            _stats = gameObject.GetComponent<HeroStats>();
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("QuestGiver"))
@@ -36,7 +43,9 @@ namespace QuestSystem
 
                 if (_questGiver.quest.isActive && _questGiver.quest.isCompleted && !_questGiver.quest.isTerminated)
                 {
-                    print("Rewards");
+                    _stats.GetXp(_questGiver.quest.xp);
+                    _stats.GetGold(_questGiver.quest.gold);
+                    
                     _questGiver.questIcon.SetActive(false);
                     _questGiver.quest.isTerminated = true;
                 }

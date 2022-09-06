@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EnemyBehevior : MonoBehaviour
 {
+    public int xp;
+    
+    public int gold;
+    
     public GameObject[] paths;
 
     public float speed;
