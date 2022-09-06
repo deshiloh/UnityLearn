@@ -7,59 +7,40 @@ public class HeroStats : MonoBehaviour
     public TMP_Text xpDisplay;
     public TMP_Text goldDisplay;
 
-    public int currentLevel;
-    public int force;
-    public int currentXp;
-    public int gold;
-    public int xpToNextLevel = 20;
-
-    private void Awake()
-    {
-        currentLevel = 1;
-    }
+    public Stats heroStats;
 
     private void Start()
     {
-        currentLevel = PlayerPrefs.GetInt("Level", 1);
-        currentXp = PlayerPrefs.GetInt("CurrentXP", 0);
-        xpToNextLevel = PlayerPrefs.GetInt("XpToNextLevel", 20);
-        gold = PlayerPrefs.GetInt("Gold", 0);
-        
         UpdatePanelCharacter(); 
     }
 
     public void GetXp(int xpReceived)
     {
-        currentXp += xpReceived;
+        heroStats.playerXp += xpReceived;
         LevelUp();
         UpdatePanelCharacter();
     }
 
     public void GetGold(int goldReceived)
     {
-        gold += goldReceived;
-        PlayerPrefs.SetInt("Gold", gold);
+        heroStats.playerGold += goldReceived;
         UpdatePanelCharacter();
     }
 
     private void LevelUp()
     {
-        while (currentXp >= xpToNextLevel)
+        while (heroStats.playerXp >= heroStats.playerXpToNextLevel)
         {
-            currentLevel++;
-            currentXp -= xpToNextLevel;
-            xpToNextLevel *= 2;
+            heroStats.playerLevel++;
+            heroStats.playerXp -= heroStats.playerXpToNextLevel;
+            heroStats.playerXpToNextLevel *= 2;
         }
-        
-        PlayerPrefs.SetInt("Level", currentLevel);
-        PlayerPrefs.SetInt("CurrentXP", currentXp);
-        PlayerPrefs.SetInt("XpToNextLevel", xpToNextLevel);
     }
 
-    private void UpdatePanelCharacter()
+    public void UpdatePanelCharacter()
     {
-        levelDisplay.SetText($"Level: {currentLevel}");
-        xpDisplay.SetText($"{currentXp}/{xpToNextLevel}");
-        goldDisplay.SetText($"Gold: {gold}");
+        levelDisplay.SetText($"Level: {heroStats.playerLevel}");
+        xpDisplay.SetText($"{heroStats.playerXp}/{heroStats.playerXpToNextLevel}");
+        goldDisplay.SetText($"Gold: {heroStats.playerGold}");
     }
 }

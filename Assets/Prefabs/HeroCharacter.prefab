@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4743475962853629210}
   - component: {fileID: 9033866834777534308}
   - component: {fileID: 4743475964377436931}
+  - component: {fileID: 5460019598108120707}
   m_Layer: 0
   m_Name: HeroCharacter
   m_TagString: Untagged
@@ -234,3 +235,15 @@ MonoBehaviour:
   currentXp: 0
   gold: 0
   xpToNextLevel: 20
+--- !u!114 &5460019598108120707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743475962853629202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4aa2f1e5ef8415ba73e761617d23001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

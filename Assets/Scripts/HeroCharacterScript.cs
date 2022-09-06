@@ -66,6 +66,11 @@ public class HeroCharacterScript : MonoBehaviour
         animator.SetInteger(Dir, _animationState);
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void HandleMovement()
     {
         if (Input.GetKey(KeyCode.UpArrow))
