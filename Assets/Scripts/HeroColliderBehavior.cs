@@ -29,7 +29,8 @@ public class HeroColliderBehavior : MonoBehaviour
         if (col.CompareTag("SwitchZone"))
         {
             var zoneSwitch = col.gameObject.GetComponent<SwitchZone.SwitchZone>();
-            SceneManager.LoadScene(zoneSwitch.nextZoneName);
+            PlayerPrefs.SetString("TeleportZone", zoneSwitch.startPositionName);
+            SceneManager.LoadScene(col.name);
         }
 
         if (col.CompareTag("Mob"))

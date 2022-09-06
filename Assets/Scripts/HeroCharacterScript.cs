@@ -26,13 +26,10 @@ public class HeroCharacterScript : MonoBehaviour
     private void Awake()
     {
         _heroStats = GetComponent<HeroStats>();
+        
+        var teleportPositionObject = GameObject.Find("StartZones/" + PlayerPrefs.GetString("TeleportZone", "StartPosition"));
 
-        var startPointPosition = GameObject.Find("StartZones/StartPosition").transform.position;
-
-        var teleportPositionX = PlayerPrefs.GetFloat("PositionX", startPointPosition.x);
-        var teleportPositionY = PlayerPrefs.GetFloat("PositionY", startPointPosition.y);
-
-        transform.position = new Vector3(teleportPositionX, teleportPositionY, 0);
+        transform.position = teleportPositionObject.transform.position;
         
         // Handle end fight
         if (ApplicationData.HasBeenKilled)
