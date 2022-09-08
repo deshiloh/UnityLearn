@@ -61,8 +61,8 @@ public class HeroCharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction.x = Input.GetAxis("Horizontal");
-        direction.y = Input.GetAxis("Vertical");
+        direction.x = Input.GetAxisRaw("Horizontal");
+        direction.y = Input.GetAxisRaw("Vertical");
         
         animator.SetFloat(MoveX, direction.x);
         animator.SetFloat(MoveY, direction.y);
