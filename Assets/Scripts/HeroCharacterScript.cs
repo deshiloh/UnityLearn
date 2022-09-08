@@ -22,6 +22,8 @@ public class HeroCharacterScript : MonoBehaviour
     private static readonly int Dir = Animator.StringToHash("dir");
 
     private HeroStats _heroStats;
+    private static readonly int MoveX = Animator.StringToHash("MoveX");
+    private static readonly int MoveY = Animator.StringToHash("MoveY");
 
     private void Awake()
     {
@@ -30,7 +32,7 @@ public class HeroCharacterScript : MonoBehaviour
         var teleportPositionObject = GameObject.Find("StartZones/" + PlayerPrefs.GetString("TeleportZone", "StartPosition"));
 
         transform.position = teleportPositionObject.transform.position;
-        
+
         // Handle end fight
         if (ApplicationData.HasBeenKilled)
         {
@@ -59,16 +61,16 @@ public class HeroCharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        direction.x = Input.GetAxis("Horizontal");
+        direction.y = Input.GetAxis("Vertical");
         
-        rigidBody.MovePosition(rigidBody.position + direction * (moveSpeed * Time.fixedDeltaTime));
-        
-        animator.SetInteger(Dir, _animationState);
+        animator.SetFloat(MoveX, direction.x);
+        animator.SetFloat(MoveY, direction.y);
     }
 
     private void FixedUpdate()
     {
-        
+        rigidBody.MovePosition(rigidBody.position + direction * (moveSpeed * Time.fixedDeltaTime));
     }
 
     private void HandleMovement()

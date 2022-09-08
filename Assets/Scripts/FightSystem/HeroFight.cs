@@ -14,9 +14,13 @@ namespace FightSystem
         private PanelBehavior _panelBehavior;
         private EnemyFight _enemyFight;
         public bool canFight = true;
+        public AudioClip basicAttackSound;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
+            
             _currentPosition = transform.position;
             
             // Initialize Panel
@@ -40,6 +44,8 @@ namespace FightSystem
         IEnumerator PlayAttak()
         {
             iTween.MoveTo(gameObject, new Vector3(transform.position.x + 2, transform.position.y, 0), 0.45f);
+            
+            _audioSource.PlayOneShot(basicAttackSound);
             
             _enemyFight.GetDamage(force);
             canFight = false;

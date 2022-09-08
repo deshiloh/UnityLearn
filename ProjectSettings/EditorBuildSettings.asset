@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LoadScene.unity
+    guid: b989495bc61b44e1b8bf02f201a33621
+  - enabled: 1
     path: Assets/Scenes/HeroVillage.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
