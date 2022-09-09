@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 
 public class HeroCharacterScript : MonoBehaviour
@@ -17,8 +19,6 @@ public class HeroCharacterScript : MonoBehaviour
 
     public Animator animator;
 
-    private int _animationState = 0;
-    
     private static readonly int Dir = Animator.StringToHash("dir");
 
     private HeroStats _heroStats;
